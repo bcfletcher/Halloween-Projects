@@ -3,7 +3,7 @@
 # via a DaFuRui 5V Relay board. The relay connects to pin14 on the Pico. When i break the beam between the 
 # ky-008 and sensor it trips the relay which activates the p14 on Pico. Then the core1 kicks off and turns 
 # on each of the four SB Components Pico Relay Board (a really cool board!!!) 
-# in series with a sleep between each relay to let the animatronic play.
+# in series with a sleep between each relay to let the animatronic play. 
 #
 from machine import Pin, lightsleep
 import _thread
