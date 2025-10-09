@@ -9,10 +9,10 @@ This model is ended to work with the following from Amazon.
 6) Zhengmy 8 Packs Threaded Spike Flood Light Ground Stake Metal Replacement Stakes for Solar Lights Outdoor LED with 8 Hex Screws for Gardens Yard Path Lawn 6.3 Inches(Black)
 
 
-basically attached the spike a bottom, then screw down one nut, attached either a transmitter or detector housing, screw down another nut, then attached the ball. The ball is intedned to prevent impailing someone if the trip near a transmitter/detector.
+basically attach the spike at the bottom, then screw down one nut, attached either a transmitter or detector housing, screw down another nut, then attach the ball. The ball is intended to prevent impailing someone if the trip near a transmitter/detector ;)
 
 
-the above are the laser transmitter and receiver posts I use with my Raspberry Pico. I couple the Pico with the below relay DaFuRui relay  module which attached to the laster detector. The SB Components board is connected to 4 animatronics from eithe home depot or spirit halloween. the DaFuRui is connect to do GPIO pins on the Pico.
+the above are the laser transmitter and receiver posts I use with my Raspberry Pico. I couple the Pico with the below relay DaFuRui relay  module which attached to the laster detector. The SB Components board is connected to 4 animatronics from either home depot or spirit halloween. the DaFuRui is connected to two GPIO pins on the Pico.
 
 1) DaFuRui 5v Relay Module，8Pack 1 Channel Relay Module 5v Relays Board with Optocoupler Support High/Low Level Trigger for Arduino Relays (from Amazon)
 2) Raspberry Pi Pico Relay Board from SB Components (https://shop.sb-components.co.uk/products/raspberry-pi-pico-relay-board)
