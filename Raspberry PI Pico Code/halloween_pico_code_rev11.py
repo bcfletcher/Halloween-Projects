@@ -1,17 +1,17 @@
 #
 # Halloween Animatronic Automation System
-# This code is using both cores of a Pico or Pico W. Core 1 is running a sensor thread for the KY-008 laser
+# This code is using both cores of a Pico or Pico W. Core 0 is running a sensor thread for the KY-008 laser
 # detector via a DaFuRui 5V Relay board. The relay connects to pin14 on the Pico. When someone breaks the
 # beam between the ky-008 laser and detector it trips the relay which activates the p14 on Pico.
-# Then the core_1 kicks off and turns on each of the four SB Components Pico Relay Board (a really cool board!!!) 
+# Then the core 1 kicks off and turns on each of the four relays on the SB Components Pico Relay Board (a really cool board!!!) 
 # in series with a sleep between each relay to let the animatronic play.
 #
-# This code also controller an stop light LED board do show status of the controller during boot (yellow),
-# green when waiting for someone to trip the laster and then red once the animatronics start running. 
+# This code also controls an LED stoplight board do show status of the controller during boot (yellow),
+# green when waiting for someone to trip the laser and then red once the animatronics start running. 
 #
-# it supports 7 controllers by configuring the animatronics in the animatronicCfg List. the code gets the
-# controller id from the pico and uses that to determine the controller #
-#
+# it supports 7 controllers by configuring the animatronics in the ControllerIDs, ControllerRelayCorrections,
+# and animatronicsCfg Lists. the code gets the controller id from the pico and uses that to determine the
+# controller 
 #
 #
 codeRev="11"
@@ -20,6 +20,10 @@ codeDate="27 Oct 2025"
 from machine import Pin, lightsleep, PWM
 import _thread
 import time, utime
+
+#enable debugging
+debug=True
+debug2=False
 
 # configure controller/animatronics pairing
 # 
@@ -36,11 +40,11 @@ ControllerIDs=["E661A4D4176D6D29",
                "E6614104034B2730",
                "E66358986366412B"]
 
-# this is controller relay sesnor correction value. some relay get high/low value wrong or the jumper doesn't work
+# this is controller relay sesnor correction value. some relays get high/low value wrong or the jumper doesn't work
 # value is 0 or 1
-ControllerRelayCorrections=[0,0,0,0,0,0,0]
+ControllerRelayCorrections=[1,0,0,1,0,0,0]
 # Default controller values
-controllerNumber=1
+controllerNumber=1 
 controllerRelayCorrection=0
 
 animatronicsCfg = [['A/Scary Boy',6, 'B/Scary Girl',5,'C/Clown',5,'D/Ghost',5,"sleep time",5],
@@ -90,10 +94,6 @@ sensorPin = Pin(14,Pin.IN, Pin.PULL_UP)
 
 # thread syncronization global variable
 runAnimatronic=False
-
-#enable debugging
-debug=True
-debug2=False
 
 # more globals
 controllerNumber=1 #default
@@ -223,12 +223,13 @@ def main():
     global sensorPin
     global animatronicsInitialDelay
     
-    print("controlerID len=",len(ControllerIDs))
     
     
     if debug: print("Initializing System, please wait...")
     if debug: print("Code Rev: ",codeRev," Code Date: ",codeDate)
     if debug: print("Pico's Unique ID=",getPicoID())
+    if debug: print("Number of known controllers=",len(ControllerIDs))
+
     # change this to reflect which controller above in the list that this instance is supporting
     try: 
         controllerNumber=ControllerIDs.index(getPicoID())+1
