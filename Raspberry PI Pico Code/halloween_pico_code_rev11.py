@@ -42,7 +42,7 @@ ControllerIDs=["E661A4D4176D6D29",
 
 # this is controller relay sesnor correction value. some relays get high/low value wrong or the jumper doesn't work
 # value is 0 or 1
-ControllerRelayCorrections=[1,0,0,1,0,0,0]
+ControllerRelayCorrections=[1,0,0,1,0,1,0]
 # Default controller values
 controllerNumber=1 
 controllerRelayCorrection=0
